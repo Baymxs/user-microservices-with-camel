@@ -1,0 +1,2 @@
+rootProject.name = 'user-microservices-with-camel'
+include 'apimodel', 'webservice', 'service'
