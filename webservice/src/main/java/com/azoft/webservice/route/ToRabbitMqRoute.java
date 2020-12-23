@@ -1,14 +1,14 @@
-package com.azoft.webservice.config;
+package com.azoft.webservice.route;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RabbitMqRoute extends RouteBuilder {
+public class ToRabbitMqRoute extends RouteBuilder {
     @Override
     public void configure() {
-        from("direct:startRabbitMQPoint").
+        from("direct:rabbitMQPoint").
                 process("headerProcessor").
                 marshal().
                 json(JsonLibrary.Jackson).
