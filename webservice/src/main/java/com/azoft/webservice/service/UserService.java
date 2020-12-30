@@ -4,7 +4,6 @@ import com.azoft.apimodel.creation.UserCreationReq;
 import com.azoft.apimodel.creation.UserCreationRes;
 import com.azoft.apimodel.getting.UserGettingRes;
 import com.azoft.apimodel.updating.UserUpdatingReq;
-import lombok.Getter;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.springframework.stereotype.Service;
@@ -12,33 +11,26 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    @Getter
-    private static String messageType;
-
-    @Produce(value = "direct:startRabbitMQPoint")
+    @Produce(value = "direct:rabbitMQPoint")
     private ProducerTemplate producer;
 
-    public ServiceResult<UserCreationRes> createUser(UserCreationReq userCreationReq) {
-        messageType = RequestType.CREATE.name();
-        sendMessage(userCreationReq);
+    public ServiceRes<UserCreationRes> createUser(UserCreationReq req) {
+        sendMessage(new Req(ReqType.CREATE, req));
         return null;
     }
 
-    public ServiceStatus updateUser(UserUpdatingReq userUpdatingReq) {
-        messageType = RequestType.UPDATE.name();
-        sendMessage(userUpdatingReq);
+    public ServiceStatus updateUser(UserUpdatingReq req) {
+        sendMessage(new Req(ReqType.UPDATE, req));
         return null;
     }
 
-    public ServiceResult<UserGettingRes> getUser(Long id) {
-        messageType = RequestType.GET.name();
-        sendMessage(id);
+    public ServiceRes<UserGettingRes> getUser(Long id) {
+        sendMessage(new Req(ReqType.GET, id));
         return null;
     }
 
     public ServiceStatus deleteUser(Long id) {
-        messageType = RequestType.DELETE.name();
-        sendMessage(id);
+        sendMessage(new Req(ReqType.DELETE, id));
         return null;
     }
 

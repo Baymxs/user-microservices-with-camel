@@ -11,11 +11,13 @@ configurations {
 
 dependencies {
     compile project(':apimodel')
-    compile project(':webservice')
 
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+    compile group: 'org.apache.camel.springboot', name: 'camel-spring-boot-starter', version: '3.0.0'
+    compile group: 'org.apache.camel', name: 'camel-core', version: '3.0.0'
+    compile group: 'org.apache.camel', name: 'camel-rabbitmq', version: '3.0.0'
+    compile group: 'org.apache.camel', name: 'camel-jackson', version: '3.0.0'
 
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-
-    runtimeOnly 'org.postgresql:postgresql'
 }

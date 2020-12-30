@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 public class HeaderProcessor implements Processor {
     @Override
     public void process(Exchange exchange) {
-        exchange.getIn().setHeader(RabbitMQConstants.TYPE, UserService.getMessageType());
+        Req req =  (Req) exchange.getIn().getBody();
+
+        exchange.getIn().setHeader(RabbitMQConstants.TYPE, req.getType().name());
+        exchange.getIn().setBody(req.getData());
     }
 }

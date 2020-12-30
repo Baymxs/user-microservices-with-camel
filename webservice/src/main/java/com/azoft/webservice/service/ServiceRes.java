@@ -3,7 +3,7 @@ package com.azoft.webservice.service;
 import lombok.Getter;
 
 @Getter
-public class ServiceResult<T> {
+public class ServiceRes<T> {
     private T body;
     private ServiceStatus status;
 }

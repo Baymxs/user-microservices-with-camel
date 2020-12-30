@@ -10,8 +10,7 @@ public class ToRabbitMqRoute extends RouteBuilder {
     public void configure() {
         from("direct:rabbitMQPoint").
                 process("headerProcessor").
-                marshal().
-                json(JsonLibrary.Jackson).
+                marshal().json(JsonLibrary.Jackson).
                 to("rabbitmq://localhost:5672/MyExchange?queue=MyQueue&autoDelete=false&durable=true").end();
     }
 }

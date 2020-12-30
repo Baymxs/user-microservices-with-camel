@@ -4,7 +4,7 @@ import com.azoft.apimodel.creation.UserCreationReq;
 import com.azoft.apimodel.creation.UserCreationRes;
 import com.azoft.apimodel.getting.UserGettingRes;
 import com.azoft.apimodel.updating.UserUpdatingReq;
-import com.azoft.webservice.service.ServiceResult;
+import com.azoft.webservice.service.ServiceRes;
 import com.azoft.webservice.service.ServiceStatus;
 import com.azoft.webservice.service.UserService;
 import com.azoft.webservice.webcomon.HttpRes;
@@ -21,7 +21,7 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<?> createUser(@RequestBody UserCreationReq userCreationReq) {
-        ServiceResult<UserCreationRes> result = userService.createUser(userCreationReq);
+        ServiceRes<UserCreationRes> result = userService.createUser(userCreationReq);
 
         if (result.getStatus() == ServiceStatus.USER_ALREADY_CREATED) {
             return HttpRes.conflict(HttpStatus.BAD_REQUEST, result.getStatus().name());
@@ -43,7 +43,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getUser(@PathVariable Long id) {
-        ServiceResult<UserGettingRes> result = userService.getUser(id);
+        ServiceRes<UserGettingRes> result = userService.getUser(id);
 
         if (result.getStatus() == ServiceStatus.USER_NOT_FOUND) {
             return HttpRes.conflict(HttpStatus.NOT_FOUND, result.getStatus().name());

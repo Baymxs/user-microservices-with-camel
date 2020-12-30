@@ -1,6 +1,6 @@
 package com.azoft.webservice.service;
 
-public enum RequestType {
+public enum ReqType {
     CREATE,
     UPDATE,
     GET,
