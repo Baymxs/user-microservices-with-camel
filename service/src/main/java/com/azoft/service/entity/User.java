@@ -1,15 +1,22 @@
-package com.azoft.apimodel.updating;
+package com.azoft.service.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.io.Serializable;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "users")
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserUpdatingReq implements Serializable {
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
     private String surname;
     private String patronymic;

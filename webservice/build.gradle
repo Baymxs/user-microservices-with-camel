@@ -6,9 +6,9 @@ plugins {
 dependencies {
     compile project(':apimodel')
 
-    compile group: 'org.apache.camel', name: 'camel-rabbitmq', version: '3.0.0'
-    compile group: 'org.apache.camel.springboot', name: 'camel-servlet-starter', version: '3.0.0'
-    compile group: 'org.apache.camel', name: 'camel-jackson', version: '3.0.0'
-
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    compile group: 'org.apache.camel.springboot', name: 'camel-servlet-starter', version: '3.0.0'
+    compile group: 'org.apache.camel', name: 'camel-rabbitmq', version: '3.0.0'
+
 }
