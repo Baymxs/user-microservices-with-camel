@@ -1,6 +1,6 @@
 # Microservices for working with users + Apache Camel
-Microservice architecture project that contains a web service and processing service. The web service receives requests from the client and sends them to the message queue and creates a callback queue to receive a response for a specific request from another service. The processing service receives messages from the queue, processes the requests accordingly and sends a response to the callback queue.
-Spring(web, amqp, data), RabbitMQ, Apache Camel.
+Microservice architecture project that contains a web service and processing service. 
+Spring(web, data), RabbitMQ, Apache Camel.
 # REST API Reference
 ## Response Codes
 
@@ -12,7 +12,7 @@ Spring(web, amqp, data), RabbitMQ, Apache Camel.
 ## Create user
 ---
 #### Request URL:
-`POST /api/v1/user/create`
+`POST /api/v1/users`
 #### Request Body:
 
 ```json
@@ -26,16 +26,17 @@ Spring(web, amqp, data), RabbitMQ, Apache Camel.
 #### Successful Response:
 **Status:** `200`
 ```json
-{
-    "body": null,
-    "message": "Success"
-}
+{   "id": 1,
+    "name": "Ivan",
+    "surname": "Ivanov", 
+    "patronymic": "Ivanovich", 
+    "email": "ivanov_ivan777@gmail.com"
+ }
 ```
 #### Failed Response:
 **Status:** `400`
 ```json
 {
-    "body": null,
     "message": "User with email [ivanov_ivan777@gmail.com] has already been created"
 }
 ```
@@ -43,9 +44,8 @@ Spring(web, amqp, data), RabbitMQ, Apache Camel.
 ## Update user
 ---
 #### Request URL:
-`PUT /api/v1/user/{id}`
+`PUT /api/v1/users/{id}`
 #### Request Body:
-
 ```json
 {
     "name": "Nikita",
@@ -57,16 +57,17 @@ Spring(web, amqp, data), RabbitMQ, Apache Camel.
 #### Successful Response:
 **Status:** `200`
 ```json
-{
-    "body": null,
-    "message": "Success"
-}
+{   "id": 1,
+    "name": "Nikita",
+    "surname": "Ivanov", 
+    "patronymic": "Ivanovich", 
+    "email": "ivanov_nikita383@gmail.com"
+ }
 ```
 #### Failed Response:
 **Status:** `404`
 ```json
 {
-    "body": null,
     "message": "User with id [2] not found"
 }
 ```
@@ -74,26 +75,23 @@ Spring(web, amqp, data), RabbitMQ, Apache Camel.
 ## Get user
 ---
 #### Request URL:
-`GET /api/v1/user/{id}`
+`GET /api/v1/users/{id}`
 
 #### Successful Response:
 **Status:** `200`
 ```json
 {
-    "body": {
-        "name": "Nikita",
-        "surname": "Ivanov", 
-        "patronymic": "Ivanovich", 
-        "email": "ivanov_nikita383@gmail.com"
-    },
-    "message": "Success"
+    "id": 1,
+    "name": "Nikita",
+    "surname": "Ivanov", 
+    "patronymic": "Ivanovich", 
+    "email": "ivanov_nikita383@gmail.com"
 }
 ```
 #### Failed Response:
 **Status:** `404`
 ```json
 {
-    "body": null,
     "message": "User with id [2] not found"
 }
 ```
@@ -101,21 +99,15 @@ Spring(web, amqp, data), RabbitMQ, Apache Camel.
 ## Delete user
 ---
 #### Request URL:
-`DELETE /api/v1/user/{id}`
+`DELETE /api/v1/users/{id}`
 
 #### Successful Response:
 **Status:** `200`
-```json
-{
-    "body": null,
-    "message": "Success"
-}
-```
+
 #### Failed Response:
 **Status:** `404`
 ```json
 {
-    "body": null,
     "message": "User with id [2] not found"
 }
 ```
