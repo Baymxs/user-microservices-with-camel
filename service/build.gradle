@@ -18,5 +18,7 @@ dependencies {
     compile group: 'org.apache.camel', name: 'camel-rabbitmq', version: '3.0.0'
     compile group: 'org.apache.camel', name: 'camel-jackson', version: '3.0.0'
 
-//    runtimeOnly 'org.postgresql:postgresql'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5'
+
+    runtimeOnly 'org.postgresql:postgresql'
 }

@@ -13,7 +13,7 @@ public class ToRabbitMqRoute extends RouteBuilder {
         rest("users").description("User rest service")
                 .consumes("application/json").produces("application/json")
                 .post().description("Create user")
-                .route().setHeader(RabbitMQConstants.TYPE, constant("createe"))
+                .route().setHeader(RabbitMQConstants.TYPE, constant("create"))
                 .log("User creation request received")
                 .to("rabbitmq://localhost:5672/MyExchange?queue=MyQueue&autoDelete=false&durable=true").endRest()
 
